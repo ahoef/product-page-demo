@@ -1,4 +1,7 @@
 <main>
+    {% if error.isErrorState %}<div class="error">{{ error.message }}</div>{% endif %}
+
+    <section>
       {% include 'partials/product-list.html' %}
       {% include 'partials/mini-cart.html' %}
     </section>
