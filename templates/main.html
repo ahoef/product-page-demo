@@ -1,5 +1,5 @@
 <main>
-    {% if error.isErrorState %}<div class="error">{{ error.message }}</div>{% endif %}
+    {% if error != '' %}<div class="error">{{ error }}</div>{% endif %}
 
     <section>
       {% include 'partials/product-list.html' %}

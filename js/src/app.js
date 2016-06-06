@@ -1,32 +1,35 @@
-let data = {};
-let error = {
-    isErrorState: false,
-    message: ''
+// Nunjucks template environment
+const environment = nunjucks.configure('/templates');
+
+// Global data store for application's state
+let data = {
+    listItems: [],
+    cartItems: [],
+    error: ''
 };
-const env = nunjucks.configure('/templates');
+
 
 /**
-* Makes a GET request to the product database and saves
-* the response to the data variable
+* Makes a GET request to product database, saves
+* response to data store, calls function to render
 */
 function getProducts() {
     $.ajax({
         url: "http://localhost:3000/products"
     })
-    .success(function( results ) {
+    .success(function(results) {
         console.log(results);
-        return data.listItems = results;
+        data.listItems = results;
+        return renderMarkup();
     })
     .error(function() {
-        updateErrorState(true, 'There was a problem receiving product data.');
-        return renderMarkup();
+        updateError('There was a problem receiving product data.');
     });
 }
 
 /**
-* Makes a GET request to the cart order database, saves
-* the response to the data variable, and calls function
-* to render the template
+* Makes a GET request to cart order database, saves
+* response to data store, calls function to render
 */
 function getMiniCart() {
     $.ajax({
@@ -38,40 +41,46 @@ function getMiniCart() {
         return renderMarkup();
     })
     .error(function() {
-        updateErrorState(true, 'There was a problem receiving cart data.');
-        return renderMarkup();
+        updateError('There was a problem receiving cart data.');
     });
 }
 
+
 /**
-* Renders template markup based on data stored in data
-* and error variables, and attaches it to the DOM
+* Calculates cart total by converting item price
+* strings to integers, renders template markup based
+* on data store, and attaches template to DOM
 */
 function renderMarkup() {
-    var template = env.render('main.html', {
+    let total = 0;
+    data.cartItems.forEach(function(product) {
+        const priceInteger = parseInt(product.price.slice(1));
+        total = total + priceInteger;
+    });
+
+    const template = environment.render('main.html', {
         listItems: data.listItems,
         cartItems: data.cartItems,
-        error: error
+        error: data.error,
+        total: total
     });
     $('.product-page').html(template);
 }
 
 /**
-* Updates current error state
-* @param {Boolean} errorState - current error state
-* @param {String} message - text to display in error field
+* Updates current error state in data store
+* @param {String} message - text to display
 */
-function updateErrorState(errorState, message) {
-    return error = {
-        isErrorState: errorState,
-        message: message
-    }
+function updateError(message) {
+    data.error = message;
+    console.log(data);
+    renderMarkup();
 }
 
 /**
-* Makes POST request to add an item to the mini-cart
-* @param {Object} item - clicked item's id, name, price,
-* and description
+* Makes POST request to add an item to mini-cart
+* @param {Object} item - clicked item's id, name,
+* price, description
 */
 function addItem(item) {
     $.ajax({
@@ -79,18 +88,16 @@ function addItem(item) {
         url: "http://localhost:3000/cart_order",
         data: item
     })
-    .success(function() {
-        return getMiniCart();
-    })
+    .success(getMiniCart)
     .error(function() {
-        updateErrorState(true, 'This item could not be added.');
-        return renderMarkup();
+        updateError('This item could not be added.');
     })
 }
 
 /**
 * Makes DELETE request to remove a mini-cart item
-* @param {Object} item - clicked item's id, name, price, description
+* @param {Object} item - clicked item's id, name,
+* price, description
 */
 function deleteItem(item) {
     $.ajax({
@@ -98,12 +105,9 @@ function deleteItem(item) {
         url: `http://localhost:3000/cart_order/${item.id}`,
         data: item
     })
-    .success(function() {
-        getMiniCart();
-    })
+    .success(getMiniCart)
     .error(function() {
-        updateErrorState(true, 'This item could not be deleted.');
-        renderMarkup();
+        updateError('This item could not be deleted.');
     })
 }
 
@@ -115,8 +119,8 @@ function deleteItem(item) {
 */
 $('body').on('click', '.button', function(){
 
-    updateErrorState(false, '');
-    console.log(error);
+    updateError('');
+    console.log(data.error);
 
     const $this = $(this);
     const item = {
@@ -129,13 +133,10 @@ $('body').on('click', '.button', function(){
     console.log(item);
 
     if ($this.hasClass('add-item')) {
-        return addItem(item);
-    } else if ($this.hasClass('delete-item')) {
-        return deleteItem(item);
+        addItem(item);
     } else {
-        return false;
+        deleteItem(item);
     }
-
 });
 
 getProducts();

@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.product-page {
+    position: relative;
+    padding: 50px;
+}
+
+.error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.product-listing, .mini-cart {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 5%;
+}
+
+.product-listing {
+    width: 70%;
+}
+
+.mini-cart {
+    width: 29%;
+}

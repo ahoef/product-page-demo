@@ -1,10 +1,10 @@
 <section class="product-listing">
     {% for product in listItems %}
     <article class="product">
-        <h2 class="name">{{product.name}}</h2>
-        <p class="description">{{product.description}}</p>
-        <p class="price">{{product.price}}</p>
-        <button class="button add-item" data-name="{{product.name}}" data-id="{{product.id}}" data-description="{{product.description}}" data-price="{{product.price}}">Add To Cart</button>
+        <h2 class="name">{{ product.name }}</h2>
+        <p class="description">{{ product.description }}</p>
+        <p class="price">{{ product.price }}</p>
+        <button class="button add-item" data-name="{{ product.name }}" data-id="{{ product.id }}" data-description="{{ product.description }}" data-price="{{ product.price }}">Add To Cart</button>
     </article>
     {% endfor %}
 </section>
