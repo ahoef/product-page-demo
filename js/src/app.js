@@ -2,7 +2,7 @@
 const environment = nunjucks.configure('/templates');
 
 // Global data store for application's state
-let data = {
+let state = {
     listItems: [],
     cartItems: [],
     error: ''
@@ -19,7 +19,7 @@ function getProducts() {
     })
     .success(function(results) {
         console.log(results);
-        data.listItems = results;
+        state.listItems = results;
         return renderMarkup();
     })
     .error(function() {
@@ -37,7 +37,7 @@ function getMiniCart() {
     })
     .success(function(results) {
         console.log(results);
-        data.cartItems = results;
+        state.cartItems = results;
         return renderMarkup();
     })
     .error(function() {
@@ -53,15 +53,15 @@ function getMiniCart() {
 */
 function renderMarkup() {
     let total = 0;
-    data.cartItems.forEach(function(product) {
+    state.cartItems.forEach(function(product) {
         const priceInteger = parseInt(product.price.slice(1));
         total = total + priceInteger;
     });
 
     const template = environment.render('main.html', {
-        listItems: data.listItems,
-        cartItems: data.cartItems,
-        error: data.error,
+        listItems: state.listItems,
+        cartItems: state.cartItems,
+        error: state.error,
         total: total
     });
     $('.product-page').html(template);
@@ -72,7 +72,7 @@ function renderMarkup() {
 * @param {String} message - text to display
 */
 function updateError(message) {
-    data.error = message;
+    state.error = message;
     console.log(data);
     renderMarkup();
 }
@@ -120,7 +120,7 @@ function deleteItem(item) {
 $('body').on('click', '.button', function(){
 
     updateError('');
-    console.log(data.error);
+    console.log(state.error);
 
     const $this = $(this);
     const item = {

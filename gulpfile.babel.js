@@ -7,7 +7,7 @@ import babelify from 'babelify';
 import nunjucks from 'gulp-nunjucks';
 import connect from 'gulp-connect';
 
-gulp.task('default', ['connect', 'browserify', 'sass', 'watch', 'nunjucks']);
+gulp.task('default', ['connect', 'browserify', 'sass', 'watch', 'nunjucks', 'jsonServer']);
 
 gulp.task('connect', function() {
   connect.server();
@@ -38,6 +38,9 @@ gulp.task('nunjucks', () =>
         .pipe(gulp.dest('js/dest'))
 );
 
-// gulp.task('server', function () {
-//     jsonServer.start(); // start serving 'db.json' on port 3000
-// });
+gulp.task('jsonServer', function () {
+    jsonServer.start({
+        data: 'data/db.json',
+        port: 3000
+    });
+});
