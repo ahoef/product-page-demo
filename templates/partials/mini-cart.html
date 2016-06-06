@@ -1,0 +1,10 @@
+<section class="mini-cart">
+    {% for product in cartItems %}
+    <article class="product">
+        <h2 class="name">{{product.name}}</h2>
+        <p class="description">{{product.description}}</p>
+        <p class="price">{{product.price}}</p>
+        <button class="button delete-item" data-name="{{product.name}}" data-id="{{product.id}}" data-description="{{product.description}}" data-price="{{product.price}}">Remove Item</button>
+    </article>
+    {% endfor %}
+</section>
