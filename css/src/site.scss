@@ -1,11 +1,14 @@
 // variables
-// $main-color: #3D7587;
 $base-type: 'Helvetica', sans-serif;
 $border-style: 1px solid #DCDCDC;
-$dark-grey: #888;
+$dark-grey: #444;
+$mid-grey: #888;
+$light-grey: #ddd;
+$white: #fff;
 
 
 // partials
 @import "mixins";
+@import "keyframes";
 @import "styles";
 @import "media-queries";

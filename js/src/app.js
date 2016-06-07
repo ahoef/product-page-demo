@@ -18,12 +18,11 @@ function getProducts() {
     $.ajax({
         url: "http://localhost:3000/products"
     })
-    .success(function(results) {
-        console.log(results);
+    .success(results => {
         state.listItems = results;
         return renderMarkup();
     })
-    .error(function() {
+    .error(() => {
         updateError('There was a problem receiving product data.');
     });
 }
@@ -36,16 +35,14 @@ function getMiniCart() {
     $.ajax({
         url: "http://localhost:3000/cart_order"
     })
-    .success(function(results) {
-        console.log(results);
+    .success(results => {
         state.cartItems = results;
         return renderMarkup();
     })
-    .error(function() {
+    .error(() => {
         updateError('There was a problem receiving cart data.');
     });
 }
-
 
 /**
 * Calculates cart total by converting item price
@@ -54,7 +51,7 @@ function getMiniCart() {
 */
 function renderMarkup() {
     let total = 0;
-    state.cartItems.forEach(function(product) {
+    state.cartItems.forEach(product => {
         const priceInteger = parseInt(product.price.slice(1));
         total = total + priceInteger;
     });
@@ -76,7 +73,7 @@ function renderMarkup() {
 */
 function updateError(message) {
     state.error = message;
-    renderMarkup();
+    return renderMarkup();
 }
 
 /**
@@ -93,7 +90,8 @@ function updateNotification(message) {
 * price, description
 */
 function addItem(item) {
-    state.cartItems.forEach(function(product) {
+
+    state.cartItems.forEach(product => {
         if(product.id === item.id) {
             state.notification = 'Item is already in cart!';
             renderMarkup();
@@ -107,11 +105,11 @@ function addItem(item) {
             url: "http://localhost:3000/cart_order",
             data: item
         })
-        .success(function() {
+        .success(() => {
             updateNotification('Item added!');
             getMiniCart();
         })
-        .error(function() {
+        .error(() => {
             updateError('This item could not be added.');
         })
     }
@@ -128,11 +126,11 @@ function deleteItem(item) {
         url: `http://localhost:3000/cart_order/${item.id}`,
         data: item
     })
-    .success(function() {
+    .success(() => {
         updateNotification('Item deleted!');
         getMiniCart()
     })
-    .error(function() {
+    .error(() => {
         updateError('This item could not be deleted.');
     })
 }
@@ -147,7 +145,6 @@ $('body').on('click', 'button', function(){
 
     state.error = '';
     state.notification = '';
-    console.log(state.error);
 
     const $this = $(this);
     const item = {
@@ -156,8 +153,6 @@ $('body').on('click', 'button', function(){
         price: $(this).data('price'),
         description: $(this).data('description')
     }
-
-    console.log(item);
 
     if ($this.hasClass('add-item')) {
         addItem(item);

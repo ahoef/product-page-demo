@@ -1,5 +1,5 @@
 <main>
-    <div class="message-bar {% if notification != '' %}active-notification{% endif %}">
+    <div class="message-bar {{ 'active-notification' if notification != '' else ''}}">
         {% if error != '' %}<div class="error">{{ error }}</div>{% endif %}
         {% if notification != '' %}<div class="notification">{{ notification }}</div>{% endif %}
     </div>

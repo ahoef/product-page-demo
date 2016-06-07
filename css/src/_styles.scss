@@ -5,8 +5,7 @@
 }
 
 body {
-    font-family: $base-type
-    font-size: 14px;
+    @include base-style($dark-grey, $white);
     max-width: 1440px;
     margin: 0 auto;
 }
@@ -17,22 +16,14 @@ h2 {
 }
 
 button {
+    @include base-style($white, $mid-grey);
     border: none;
-    background-color: $dark-grey;
-    color: white;
-    font-size: 12px;
     border-radius: 5px;
     padding: 10px 20px;
-    font-family: $base-type;
     &:hover {
         cursor: pointer;
         opacity: .5;
     }
-}
-
-.product-page {
-    position: relative;
-    padding: 80px 20px;
 }
 
 .message-bar {
@@ -51,12 +42,14 @@ button {
 }
 
 .notification, .error {
-    // width: 25%;
-    // min-width: 300px;
-    background-color: #ddd;
-    color: white;
+    @include base-style($white, $light-grey);
     padding: 15px 0;
     margin: 0 auto;
+}
+
+.product-page {
+    position: relative;
+    padding: 80px 20px;
 }
 
 .product-listing, .mini-cart {
@@ -67,7 +60,6 @@ button {
 
 .product-listing {
     width: 100%;
-
     .product {
         border-bottom: $border-style;
         padding: 25px 0px;
@@ -77,9 +69,6 @@ button {
     }
 }
 
-.price {
-    color: $dark-grey;
-}
 .product-details {
     width: 75%;
     display: inline-block;
@@ -101,6 +90,18 @@ button {
     margin-top: 30px;
 }
 
+.mini-cart-heading {
+    @include base-style($white, $mid-grey);
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.mini-cart-content {
+    padding: 20px;
+}
+
 .mini-cart-container {
     border: $border-style;
     border-radius: 5px;
@@ -109,34 +110,23 @@ button {
         margin-bottom: 15px;
         border-bottom: $border-style;
     }
-    h4 {
+    .name {
         margin-bottom: 10px;
     }
     .price {
         display: inline-block;
         padding-top: 5px;
     }
-    button {
+    .delete-item {
         border-radius: 100%;
-        background-color: white;
-        color: $dark-grey;
+        @include base-style($dark-grey, $white);
         border: 1px solid $dark-grey;
         padding: 5px 8px;
         float: right;
-
     }
-
 }
 
-.mini-cart-heading {
-    padding: 10px 20px;
-    background-color: $dark-grey;
-    color: white;
-    font-weight: 400;
-    margin-bottom: 0;
-}
-
-.mini-cart-content {
-    padding: 20px;
+.price {
+    color: $mid-grey;
 }
 
