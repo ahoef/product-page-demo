@@ -11,7 +11,7 @@ let state = {
 
 
 /**
-* Makes a GET request to product database, saves
+* Makes a GET request to products endpoint, saves
 * response to data store, calls function to render
 */
 function getProducts() {
@@ -28,7 +28,7 @@ function getProducts() {
 }
 
 /**
-* Makes a GET request to cart order database, saves
+* Makes a GET request to cart_order endpoint, saves
 * response to data store, calls function to render
 */
 function getMiniCart() {
@@ -45,7 +45,7 @@ function getMiniCart() {
 }
 
 /**
-* Calculates cart total by converting item price
+* Calculates cart total by converting cart item price
 * strings to integers, renders template markup based
 * on data store, and attaches template to DOM
 */
@@ -68,7 +68,8 @@ function renderMarkup() {
 }
 
 /**
-* Updates current error state in data store
+* Updates current error state in data store,
+* calls function to render
 * @param {String} message - text to display
 */
 function updateError(message) {
@@ -79,13 +80,15 @@ function updateError(message) {
 /**
 * Updates current notification state in data store
 * @param {String} message - text to display
+
 */
 function updateNotification(message) {
     state.notification = message;
 }
 
 /**
-* Makes POST request to add an item to mini-cart
+* Checks if item clicked is already in cart, if not,
+* makes POST request to add an item to mini-cart
 * @param {Object} item - clicked item's id, name,
 * price, description
 */
@@ -136,10 +139,10 @@ function deleteItem(item) {
 }
 
 /**
-* Add & remove item click handler - resets error state
-* to default, builds item object from button data
-* attributes, and calls appropriate function based on
-* clicked button's class
+* Add & remove item click handler - resets error and
+* notification states to default, builds item object
+* from button data attributes, and calls appropriate
+* function based on clicked button's class
 */
 $('body').on('click', 'button', function(){
 
