@@ -1,0 +1,26 @@
+Mock Product Page Project Recap!
+
+What went well?
+
+    -Working on this project was fun! It was my first time using json-server as a tool for a mock service, and I really enjoyed working with it. Integrating the gulp wrapper was especially nice, so that I could fire up the service right along with my other gulp tasks.
+
+    -This project is similar to work that I've done on the Urban Outfitters account app address/payment feature, as well as on the UO checkout page. It was interesting to see some e-commerce patterns emerging.
+
+
+What were the snags/gotchas?
+
+    -Configuring nunjucks ended up being more complex than I expected. I tried a few different approaches - first with rendering on the server, then on the client with a standalone template js file, then with a bundled template js file via a browserify transform, nunjucksify. The latter approach would be most ideal, but there's an open github issue with nunjucks that has caused some reported problems with nunjucksify.
+
+
+What would I improve given more time/resources?
+
+    -With more time, I would optimize page rendering. Currently, whenever an action takes place, markup within the <body> tag fully re-renders to reflect the new state. If this application were to scale, this could lead to performance issues. To optimize, I'd implement virtual dom diffing to only re-render specific sections that change.
+
+    -I'd also spend more time configuring nunjucksify to bundle the compiled template js into my single bundle.js file, so that I don't need to reference an additional template js file and the nunjucks library.
+
+    -I'd refactor my approach to duplicate cart items. Currently I loop through all items in the mini-cart to check if one matches the id of a clicked product, to determine whether to display an error message or make a POST to the cart_order endpoint. This isn't efficient, especially for carts with many items. But in a production environment, it's likely that more data would come back from the API, including product quantity. If that were the case, I'd add a quantity drop down and send that integer through to the API when adding an item to cart.
+
+    -I'd also implement testing - whether through client side unit tests or through integration tests.
+
+    -And the list goes on - there are lots more features and improvements that would be fun to build!
+
