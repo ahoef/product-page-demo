@@ -4,12 +4,38 @@
     box-sizing: border-box;
 }
 
-.product-page {
-    position: relative;
-    padding: 50px;
+body {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 14px;
+    max-width: 1440px;
+    margin: 0 auto;
 }
 
-.error {
+h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+button {
+    border: none;
+    background-color: #888;
+    color: white;
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-family: 'Helvetica', sans-serif;
+    &:hover {
+        cursor: pointer;
+        opacity: .5;
+    }
+}
+
+.product-page {
+    position: relative;
+    padding: 50px 20px;
+}
+
+.message-bar {
     position: absolute;
     top: 0;
     left: 0;
@@ -19,13 +45,96 @@
 .product-listing, .mini-cart {
     display: inline-block;
     vertical-align: top;
-    padding: 0 5%;
+    padding: 0 4%;
 }
 
 .product-listing {
-    width: 70%;
+    width: 100%;
+
+    .product {
+        border-bottom: 1px solid #DCDCDC;
+        padding: 25px 0px;
+        &:first-child {
+            border-top: 1px solid #DCDCDC;
+        }
+    }
+}
+
+.price {
+    color: #888;
+}
+.product-details {
+    width: 75%;
+    display: inline-block;
+    .description {
+        margin-bottom: 10px;
+    }
+}
+
+.product-list-button {
+    padding-top: 35px;
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
 }
 
 .mini-cart {
-    width: 29%;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.mini-cart-container {
+    border: 1px solid #DCDCDC;
+    border-radius: 5px;
+    .product {
+        padding-bottom: 25px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #DCDCDC;
+    }
+    h4 {
+        margin-bottom: 10px;
+    }
+    .price {
+        display: inline-block;
+        padding-top: 5px;
+    }
+    button {
+        border-radius: 100%;
+        background-color: white;
+        color: #888;
+        border: 1px solid #888;
+        padding: 5px 8px;
+        float: right;
+
+    }
+
+}
+
+.mini-cart-heading {
+    padding: 10px 20px;
+    background-color: #888;
+    color: white;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.mini-cart-content {
+    padding: 20px;
+}
+
+@media (min-width: 800px) {
+    .product-listing {
+        width: 70%;
+        border-right: 1px solid #DCDCDC;
+    }
+    .product-list-button {
+        width: 24%;
+        text-align: center;
+    }
+    .mini-cart {
+        width: 29%;
+        margin-top: 0;
+    }
+
 }
