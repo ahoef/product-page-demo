@@ -1,5 +1,8 @@
 <main>
-    {% if error != '' %}<div class="error">{{ error }}</div>{% endif %}
+    <div class="message-bar {% if notification != '' %}active-notification{% endif %}">
+        {% if error != '' %}<div class="error">{{ error }}</div>{% endif %}
+        {% if notification != '' %}<div class="notification">{{ notification }}</div>{% endif %}
+    </div>
 
     <section>
       {% include 'partials/product-list.html' %}

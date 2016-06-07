@@ -1,0 +1,11 @@
+@-webkit-keyframes slide-up {
+    0% { top: 0; }
+    75% { top: 0; }
+    100% { top: -50px; }
+}
+
+@keyframes slide-up {
+    0% { top: 0; }
+    75% { top: 0; }
+    100% { top: -50px; }
+}

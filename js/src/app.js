@@ -5,6 +5,7 @@ const environment = nunjucks.configure('/templates');
 let state = {
     listItems: [],
     cartItems: [],
+    notification: '',
     error: ''
 };
 
@@ -62,8 +63,10 @@ function renderMarkup() {
         listItems: state.listItems,
         cartItems: state.cartItems,
         error: state.error,
+        notification: state.notification,
         total: total
     });
+
     $('.product-page').html(template);
 }
 
@@ -73,8 +76,15 @@ function renderMarkup() {
 */
 function updateError(message) {
     state.error = message;
-    console.log(data);
     renderMarkup();
+}
+
+/**
+* Updates current notification state in data store
+* @param {String} message - text to display
+*/
+function updateNotification(message) {
+    state.notification = message;
 }
 
 /**
@@ -83,15 +93,28 @@ function updateError(message) {
 * price, description
 */
 function addItem(item) {
-    $.ajax({
-        method: "POST",
-        url: "http://localhost:3000/cart_order",
-        data: item
+    state.cartItems.forEach(function(product) {
+        if(product.id === item.id) {
+            state.notification = 'Item is already in cart!';
+            renderMarkup();
+            return;
+        }
     })
-    .success(getMiniCart)
-    .error(function() {
-        updateError('This item could not be added.');
-    })
+
+    if (state.notification === '') {
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:3000/cart_order",
+            data: item
+        })
+        .success(function() {
+            updateNotification('Item added!');
+            getMiniCart();
+        })
+        .error(function() {
+            updateError('This item could not be added.');
+        })
+    }
 }
 
 /**
@@ -105,7 +128,10 @@ function deleteItem(item) {
         url: `http://localhost:3000/cart_order/${item.id}`,
         data: item
     })
-    .success(getMiniCart)
+    .success(function() {
+        updateNotification('Item deleted!');
+        getMiniCart()
+    })
     .error(function() {
         updateError('This item could not be deleted.');
     })
@@ -117,9 +143,10 @@ function deleteItem(item) {
 * attributes, and calls appropriate function based on
 * clicked button's class
 */
-$('body').on('click', '.button', function(){
+$('body').on('click', 'button', function(){
 
-    updateError('');
+    state.error = '';
+    state.notification = '';
     console.log(state.error);
 
     const $this = $(this);

@@ -1,0 +1,15 @@
+@media (min-width: 800px) {
+    .product-listing {
+        width: 70%;
+        border-right: $border-style;
+    }
+    .product-list-button {
+        width: 24%;
+        text-align: center;
+    }
+    .mini-cart {
+        width: 29%;
+        margin-top: 0;
+    }
+
+}

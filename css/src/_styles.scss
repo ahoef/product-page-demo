@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Helvetica', sans-serif;
+    font-family: $base-type
     font-size: 14px;
     max-width: 1440px;
     margin: 0 auto;
@@ -18,12 +18,12 @@ h2 {
 
 button {
     border: none;
-    background-color: #888;
+    background-color: $dark-grey;
     color: white;
     font-size: 12px;
     border-radius: 5px;
     padding: 10px 20px;
-    font-family: 'Helvetica', sans-serif;
+    font-family: $base-type;
     &:hover {
         cursor: pointer;
         opacity: .5;
@@ -32,7 +32,7 @@ button {
 
 .product-page {
     position: relative;
-    padding: 50px 20px;
+    padding: 80px 20px;
 }
 
 .message-bar {
@@ -40,6 +40,23 @@ button {
     top: 0;
     left: 0;
     right: 0;
+    text-align: center;
+}
+
+.active-notification {
+    -webkit-animation: 2s slide-up;
+    animation: 2s slide-up;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+.notification, .error {
+    // width: 25%;
+    // min-width: 300px;
+    background-color: #ddd;
+    color: white;
+    padding: 15px 0;
+    margin: 0 auto;
 }
 
 .product-listing, .mini-cart {
@@ -52,16 +69,16 @@ button {
     width: 100%;
 
     .product {
-        border-bottom: 1px solid #DCDCDC;
+        border-bottom: $border-style;
         padding: 25px 0px;
         &:first-child {
-            border-top: 1px solid #DCDCDC;
+            border-top: $border-style;
         }
     }
 }
 
 .price {
-    color: #888;
+    color: $dark-grey;
 }
 .product-details {
     width: 75%;
@@ -85,12 +102,12 @@ button {
 }
 
 .mini-cart-container {
-    border: 1px solid #DCDCDC;
+    border: $border-style;
     border-radius: 5px;
     .product {
         padding-bottom: 25px;
         margin-bottom: 15px;
-        border-bottom: 1px solid #DCDCDC;
+        border-bottom: $border-style;
     }
     h4 {
         margin-bottom: 10px;
@@ -102,8 +119,8 @@ button {
     button {
         border-radius: 100%;
         background-color: white;
-        color: #888;
-        border: 1px solid #888;
+        color: $dark-grey;
+        border: 1px solid $dark-grey;
         padding: 5px 8px;
         float: right;
 
@@ -113,7 +130,7 @@ button {
 
 .mini-cart-heading {
     padding: 10px 20px;
-    background-color: #888;
+    background-color: $dark-grey;
     color: white;
     font-weight: 400;
     margin-bottom: 0;
@@ -123,18 +140,3 @@ button {
     padding: 20px;
 }
 
-@media (min-width: 800px) {
-    .product-listing {
-        width: 70%;
-        border-right: 1px solid #DCDCDC;
-    }
-    .product-list-button {
-        width: 24%;
-        text-align: center;
-    }
-    .mini-cart {
-        width: 29%;
-        margin-top: 0;
-    }
-
-}

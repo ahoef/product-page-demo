@@ -1,18 +1,25 @@
 <section class="mini-cart">
-    <h2>Cart</h2>
+    <div class="mini-cart-container">
+        <h2 class="mini-cart-heading">Cart ({{ cartItems.length }})</h2>
 
-    {% if cartItems.length < 1 %}
-        <p>You don't have any items in your cart.</p>
+        <div class="mini-cart-content">
 
-    {% else %}
-        {% for product in cartItems %}
-        <article class="product">
-            <h2 class="name">{{ product.name }}</h2>
-            <p class="price">{{ product.price }}</p>
-            <button class="button delete-item" data-name="{{ product.name }}" data-id="{{ product.id }}" data-description="{{ product.description }}" data-price="{{ product.price }}">Remove Item</button>
-        </article>
-        {% endfor %}
-    {% endif %}
+            {% if cartItems.length < 1 %}
+                <article class="product">
+                    <p>You don't have any items in your cart.</p>
+                </article>
 
-    <p>Total: ${{ total }}</p>
+            {% else %}
+                {% for product in cartItems %}
+                <article class="product">
+                    <h4 class="name">{{ product.name }}</h2>
+                    <p class="price">{{ product.price }}</p>
+                    <button class="button delete-item" data-name="{{ product.name }}" data-id="{{ product.id }}" data-description="{{ product.description }}" data-price="{{ product.price }}">X</button>
+                </article>
+                {% endfor %}
+            {% endif %}
+
+            <h2>Total: ${{ total }}</h2>
+        </div>
+    </div>
 </section>

@@ -1,7 +1,11 @@
 // variables
-$main-color: #3D7587;
+// $main-color: #3D7587;
+$base-type: 'Helvetica', sans-serif;
+$border-style: 1px solid #DCDCDC;
+$dark-grey: #888;
 
 
 // partials
 @import "mixins";
 @import "styles";
+@import "media-queries";
