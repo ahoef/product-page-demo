@@ -9,7 +9,7 @@ import connect from 'gulp-connect';
 
 gulp.task('default', ['connect', 'browserify', 'sass', 'watch', 'nunjucks', 'jsonServer']);
 
-gulp.task('connect', function() {
+gulp.task('connect', () => {
   connect.server();
 });
 
@@ -27,7 +27,7 @@ gulp.task('sass', () => {
         .pipe(gulp.dest('css/dest'));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
     gulp.watch('js/src/*.js', ['browserify']);
     gulp.watch('css/src/*.scss', ['sass']);
 });
@@ -38,7 +38,7 @@ gulp.task('nunjucks', () =>
         .pipe(gulp.dest('js/dest'))
 );
 
-gulp.task('jsonServer', function () {
+gulp.task('jsonServer', () => {
     jsonServer.start({
         data: 'data/db.json',
         port: 3000
