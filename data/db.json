@@ -19,12 +19,5 @@
       "price": "$1500"
     }
   ],
-  "cart_order": [
-    {
-      "id": 2,
-      "name": "Never ending glass of Water",
-      "price": "$2000",
-      "description": "Tired of running out of water when you sleep? This glass of water is always half-full. And it always stays clean and germ free!"
-    }
-  ]
+  "cart_order": []
 }
