@@ -1,14 +1,19 @@
 <section class="product-listing">
+
     {% for product in listItems %}
     <article class="product">
         <div class="product-details">
             <h2 class="name">{{ product.name }}</h2>
-            <p class="description">{{ product.description }}</p>
-            <p class="price">{{ product.price }}</p>
+            <img class="thumbnail" src="./images/placeholder.png" alt="{{ product.name }}" />
+            <div class="copy-container">
+                <p class="description">{{ product.description }}</p>
+                <p class="price">${{ product.price }}</p>
+            </div>
         </div>
         <div class="product-list-button">
             <button class="add-item" data-name="{{ product.name }}" data-id="{{ product.id }}" data-description="{{ product.description }}" data-price="{{ product.price }}">Add To Cart</button>
         </div>
     </article>
     {% endfor %}
+
 </section>
