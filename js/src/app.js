@@ -52,8 +52,8 @@ function getMiniCart() {
 function renderMarkup() {
     let total = 0;
     state.cartItems.forEach(product => {
-        const priceInteger = parseInt(product.price.slice(1));
-        total = total + priceInteger;
+        const price = product.price;
+        total = total + price;
     });
 
     const template = environment.render('main.html', {
@@ -130,11 +130,11 @@ function deleteItem(item) {
         data: item
     })
     .success(() => {
-        updateNotification('Item deleted!');
+        updateNotification('Item removed!');
         getMiniCart()
     })
     .error(() => {
-        updateError('This item could not be deleted.');
+        updateError('This item could not be removed.');
     })
 }
 
