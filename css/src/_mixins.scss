@@ -1,8 +1,14 @@
-@mixin base-style($text-color, $bg-color) {
+@mixin base-type($text-color, $bg-color) {
     font-family: 'Helvetica', sans-serif;
     font-size: 14px;
     color: $text-color;
     background-color: $bg-color;
+}
+
+@mixin row-item($width) {
+    display: inline-block;
+    width: $width;
+    vertical-align: top;
 }
 
 @mixin center-align {

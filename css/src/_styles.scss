@@ -1,3 +1,4 @@
+// global styles
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +6,7 @@
 }
 
 body {
-    @include base-style($dark-grey, $white);
+    @include base-type($dark-grey, $white);
     max-width: 1440px;
     margin: 0 auto;
 }
@@ -16,7 +17,7 @@ h2 {
 }
 
 button {
-    @include base-style($white, $mid-grey);
+    @include base-type($white, $mid-grey);
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -26,25 +27,8 @@ button {
     }
 }
 
-.message-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-}
-
-.active-notification {
-    -webkit-animation: 2s slide-up;
-    animation: 2s slide-up;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-}
-
-.notification, .error {
-    @include base-style($white, $light-grey);
-    padding: 15px 0;
-    margin: 0 auto;
+.price {
+    color: $mid-grey;
 }
 
 .product-page {
@@ -53,13 +37,13 @@ button {
 }
 
 .product-listing, .mini-cart {
-    display: inline-block;
-    vertical-align: top;
+    @include row-item(100%);
     padding: 0 4%;
 }
 
+
+// product list styles
 .product-listing {
-    width: 100%;
     .product {
         border-bottom: $border-style;
         padding: 25px 0px;
@@ -70,28 +54,35 @@ button {
 }
 
 .product-details {
-    width: 75%;
-    display: inline-block;
-    .description {
+    @include row-item(100%);
+    max-width: 400px;
+
+    .thumbnail {
+        @include row-item(100%);
         margin-bottom: 10px;
+    }
+    .copy-container {
+        @include row-item(100%);
+        .description {
+            margin-bottom: 15px;
+        }
     }
 }
 
 .product-list-button {
+    @include row-item(100%);
     padding-top: 35px;
-    width: 100%;
-    display: inline-block;
-    vertical-align: top;
     text-align: left;
 }
 
+
+// mini-cart styles
 .mini-cart {
-    width: 100%;
     margin-top: 30px;
 }
 
 .mini-cart-heading {
-    @include base-style($white, $mid-grey);
+    @include base-type($white, $mid-grey);
     padding: 10px 20px;
     font-size: 18px;
     font-weight: 400;
@@ -119,14 +110,32 @@ button {
     }
     .delete-item {
         border-radius: 100%;
-        @include base-style($dark-grey, $white);
+        @include base-type($dark-grey, $white);
         border: 1px solid $dark-grey;
         padding: 5px 8px;
         float: right;
     }
 }
 
-.price {
-    color: $mid-grey;
+
+// message bar styles
+.message-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 
+.active-notification {
+    -webkit-animation: 2s slide-up;
+    animation: 2s slide-up;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+.notification, .error {
+    @include base-type($white, $light-grey);
+    padding: 15px 0;
+    margin: 0 auto;
+}
