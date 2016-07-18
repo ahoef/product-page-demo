@@ -4,19 +4,3 @@
     color: $text-color;
     background-color: $bg-color;
 }
-
-@mixin row-item($width) {
-    display: inline-block;
-    width: $width;
-    vertical-align: top;
-}
-
-@mixin center-align {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
-}

@@ -27,6 +27,12 @@ button {
     }
 }
 
+.row-item {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+}
+
 .price {
     color: $mid-grey;
 }
@@ -37,7 +43,6 @@ button {
 }
 
 .product-listing, .mini-cart {
-    @include row-item(100%);
     padding: 0 4%;
 }
 
@@ -54,15 +59,12 @@ button {
 }
 
 .product-details {
-    @include row-item(100%);
     max-width: 400px;
 
     .thumbnail {
-        @include row-item(100%);
         margin-bottom: 10px;
     }
     .copy-container {
-        @include row-item(100%);
         .description {
             margin-bottom: 15px;
         }
@@ -70,7 +72,6 @@ button {
 }
 
 .product-list-button {
-    @include row-item(100%);
     padding-top: 35px;
     text-align: left;
 }

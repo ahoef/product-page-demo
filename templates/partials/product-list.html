@@ -1,16 +1,16 @@
-<section class="product-listing">
+<section class="product-listing row-item">
 
     {% for product in listItems %}
     <article class="product">
-        <div class="product-details">
+        <div class="product-details row-item">
             <h2 class="name">{{ product.name }}</h2>
-            <img class="thumbnail" src="./images/placeholder.png" alt="{{ product.name }}" />
-            <div class="copy-container">
+            <img class="thumbnail row-item" src="./images/placeholder.png" alt="{{ product.name }}" />
+            <div class="copy-container row-item">
                 <p class="description">{{ product.description }}</p>
                 <p class="price">${{ product.price }}</p>
             </div>
         </div>
-        <div class="product-list-button">
+        <div class="product-list-button row-item">
             <button class="add-item" data-name="{{ product.name }}" data-id="{{ product.id }}" data-description="{{ product.description }}" data-price="{{ product.price }}">Add To Cart</button>
         </div>
     </article>
